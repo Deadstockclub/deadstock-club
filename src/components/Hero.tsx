@@ -1,7 +1,7 @@
 "use client";
 
 import { Playfair_Display, Montserrat } from "next/font/google";
-import Reveal from "./animations/Reveal";
+import FadeIn from "./animations/FadeIn";
 
 const playfair = Playfair_Display({
   subsets: ["latin"],
@@ -15,38 +15,79 @@ const montserrat = Montserrat({
 
 export default function Hero() {
   return (
-    <section className="min-h-screen bg-black text-white flex items-center justify-center overflow-hidden">
-      <div className="text-center px-6">
-        <Reveal>
-          <h1
-            className={`${playfair.className} text-[84px] md:text-[145px] tracking-[0.12em] leading-none`}
-          >
-            DEADSTOCK
-          </h1>
-        </Reveal>
+    <section className="min-h-screen flex flex-col items-center justify-center px-6">
+      {/* DEADSTOCK */}
 
-        <Reveal delay={0.4}>
+      <FadeIn>
+        <h1
+          className={`
+          ${playfair.className}
+          text-[18vw]
+          sm:text-[7rem]
+          md:text-[8rem]
+          leading-none
+          tracking-tight
+          text-center
+          `}
+        >
+          DEADSTOCK
+        </h1>
+      </FadeIn>
+
+      {/* CURATED HATS */}
+
+      <FadeIn delay={0.3}>
+        <p
+          className={`
+          ${montserrat.className}
+          mt-8
+          text-[13px]
+          sm:text-sm
+          uppercase
+          tracking-[0.55em]
+          text-neutral-400
+          text-center
+          `}
+        >
+          CURATED HATS
+        </p>
+      </FadeIn>
+
+      {/* FRASE */}
+
+      <FadeIn delay={0.55}>
+        <p
+          className={`
+          ${playfair.className}
+          mt-10
+          text-xl
+          italic
+          text-neutral-300
+          text-center
+          `}
+        >
+          For those who know.
+        </p>
+      </FadeIn>
+
+      {/* DESLIZA */}
+
+      <FadeIn delay={0.85}>
+        <div className="mt-28">
           <p
-            className={`${montserrat.className} mt-16 text-[10px] md:text-sm uppercase tracking-[2.5em] text-neutral-300 ml-[2.5em] whitespace-nowrap`}
+            className={`
+            ${montserrat.className}
+            uppercase
+            tracking-[0.6em]
+            text-[10px]
+            text-neutral-500
+            animate-pulse
+            `}
           >
-            curated hats
+            DESLIZA
           </p>
-        </Reveal>
-
-        <Reveal delay={0.9}>
-          <div className="mt-36 flex flex-col items-center">
-            <span
-              className={`${montserrat.className} text-[9px] uppercase tracking-[1em] text-neutral-500`}
-            >
-              desliza
-            </span>
-
-            <div className="mt-5 text-neutral-400 text-xl animate-bounce">
-              ↓
-            </div>
-          </div>
-        </Reveal>
-      </div>
+        </div>
+      </FadeIn>
     </section>
   );
 }
