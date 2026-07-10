@@ -7,6 +7,7 @@ import { Playfair_Display, Montserrat, DM_Sans } from "next/font/google";
 
 import FadeIn from "@/components/animations/FadeIn";
 import Float from "@/components/animations/Float";
+import HatActions from "@/components/HatActions";
 
 const playfair = Playfair_Display({
   subsets: ["latin"],
@@ -84,8 +85,6 @@ export default async function HatPage({
 
             <div className="w-20 h-px bg-neutral-700 my-10" />
 
-            {/* DESCRIPCIÓN */}
-
             <p
               className={`${montserrat.className} max-w-md text-[15px] leading-8 text-neutral-400`}
             >
@@ -97,6 +96,7 @@ export default async function HatPage({
             </p>
 
             {/* PRECIOS */}
+            {/* PRECIOS */}
 
             <div className="mt-14 max-w-md">
               <div className="border-t border-neutral-800 pt-8">
@@ -107,19 +107,20 @@ export default async function HatPage({
                     Precio Preventa
                   </span>
 
-                  <span className="text-lg">S/.139</span>
+                  <span className="text-lg text-neutral-400">S/.139</span>
                 </div>
 
                 <div className="flex justify-between items-center py-4 border-b border-neutral-900">
                   <span
                     className={`${display.className} uppercase tracking-[0.35em] text-[11px] text-neutral-500`}
                   >
-                    Precio Regular
+                    Precio de Lanzamiento
                   </span>
 
                   <span className="text-lg text-neutral-400">S/.169</span>
                 </div>
               </div>
+
               {/* BENEFICIOS */}
 
               <div className="mt-12">
@@ -132,21 +133,19 @@ export default async function HatPage({
                 <div
                   className={`${display.className} mt-5 space-y-3 leading-7 text-neutral-400`}
                 >
-                  <p>• Precio exclusivo de preventa (S/.139)</p>
+                  <p>• Precio exclusivo de preventa</p>
 
                   <p>• Tarjeta numerada Archive Member</p>
 
                   <p>• Acceso anticipado a futuros drops</p>
+
+                  <p>• Secret Gift</p>
                 </div>
               </div>
 
-              {/* BOTÓN */}
+              {/* ACCIONES */}
 
-              <button
-                className={`${display.className} mt-14 border border-white px-10 py-4 uppercase tracking-[0.35em] transition-all duration-500 hover:bg-white hover:text-black`}
-              >
-                Join the Archive
-              </button>
+              <HatActions hat={hat} />
             </div>
           </FadeIn>
         </div>
