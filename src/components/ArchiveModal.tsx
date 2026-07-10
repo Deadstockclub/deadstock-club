@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { AnimatePresence, motion } from "framer-motion";
+import { useEffect } from "react";
 
 interface Props {
   open: boolean;
@@ -14,6 +15,17 @@ interface Props {
 }
 
 export default function ArchiveModal({ open, onClose, hat }: Props) {
+  useEffect(() => {
+    if (open) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [open]);
   return (
     <AnimatePresence>
       {open && (
@@ -23,7 +35,7 @@ export default function ArchiveModal({ open, onClose, hat }: Props) {
           exit={{ opacity: 0 }}
           transition={{ duration: 0.25 }}
           onClick={onClose}
-          className="fixed inset-0 z-[999] bg-black/80 backdrop-blur-lg flex items-center justify-center px-6"
+          className="fixed inset-0 overflow-y-auto z-[999] bg-black/80 backdrop-blur-lg flex items-center justify-center px-6"
         >
           <motion.div
             initial={{
