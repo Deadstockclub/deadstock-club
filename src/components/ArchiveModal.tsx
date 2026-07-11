@@ -7,6 +7,11 @@ import { useEffect } from "react";
 interface Props {
   open: boolean;
   onClose: () => void;
+
+  onContinue: () => void;
+
+  loading: boolean;
+
   hat: {
     name: string;
     archive: string;
@@ -14,7 +19,13 @@ interface Props {
   };
 }
 
-export default function ArchiveModal({ open, onClose, hat }: Props) {
+export default function ArchiveModal({
+  open,
+  onClose,
+  onContinue,
+  loading,
+  hat,
+}: Props) {
   useEffect(() => {
     if (open) {
       document.body.style.overflow = "hidden";
@@ -120,36 +131,56 @@ export default function ArchiveModal({ open, onClose, hat }: Props) {
             {/* Botón */}
 
             <button
+              onClick={onContinue}
+              disabled={loading}
               className="
-                group
-                w-full
-                mt-10
-                border
-                border-neutral-700
-                bg-neutral-950
-                py-4
+    group
+    w-full
+    mt-10
+    border
+    border-neutral-700
+    bg-neutral-950
+    py-4
 
-                uppercase
-                tracking-[0.35em]
-                text-sm
+    uppercase
+    tracking-[0.35em]
+    text-sm
 
-                transition-all
-                duration-150
+    transition-all
+    duration-200
 
-                hover:bg-neutral-900
-                hover:border-neutral-500
+    hover:bg-neutral-900
+    hover:border-neutral-500
 
-                active:translate-y-[2px]
-                active:scale-[0.985]
-                active:bg-neutral-800
-              "
+    active:translate-y-[2px]
+    active:scale-[0.985]
+
+    disabled:opacity-70
+    disabled:cursor-default
+  "
             >
-              <span className="flex items-center justify-center gap-3">
-                Continuar
-                <span className="transition-transform duration-300 group-hover:translate-x-1">
-                  →
+              {loading ? (
+                <span className="flex items-center justify-center gap-3">
+                  <motion.div
+                    animate={{
+                      opacity: [0.35, 1, 0.35],
+                    }}
+                    transition={{
+                      repeat: Infinity,
+                      duration: 1.2,
+                    }}
+                    className="w-2 h-2 rounded-full bg-white"
+                  />
+                  Preparando acceso...
                 </span>
-              </span>
+              ) : (
+                <span className="flex items-center justify-center gap-3">
+                  Continuar
+                  <span className="transition-transform duration-300 group-hover:translate-x-1">
+                    →
+                  </span>
+                </span>
+              )}
             </button>
 
             <button

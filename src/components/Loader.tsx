@@ -1,66 +1,178 @@
 "use client";
 
-import { motion, AnimatePresence } from "framer-motion";
-import useLoader from "@/hooks/useLoader";
-import { Montserrat } from "next/font/google";
+import { motion } from "framer-motion";
+import { useState } from "react";
 
-const montserrat = Montserrat({
-  subsets: ["latin"],
-  weight: ["300"],
-});
-
-export default function Loader({ onFinish }: { onFinish: () => void }) {
-  const loading = useLoader();
+export default function Loader() {
+  const [exit, setExit] = useState(false);
 
   return (
-    <AnimatePresence onExitComplete={onFinish}>
-      {loading && (
-        <motion.div
-          initial={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-          transition={{
-            duration: 0.9,
-            ease: "easeInOut",
+    <motion.div
+      initial={{
+        scale: 1,
+        opacity: 1,
+      }}
+      animate={
+        exit
+          ? {
+              scale: 2,
+              opacity: 0,
+            }
+          : {}
+      }
+      transition={{
+        duration: 1.2,
+        ease: "easeInOut",
+      }}
+      onAnimationComplete={() => {}}
+      className="
+fixed
+inset-0
+z-[100]
+bg-black
+overflow-hidden
+flex
+items-center
+justify-center
+"
+    >
+      {/* VIDEO BACKGROUND */}
+
+      <video
+        autoPlay
+        muted
+        loop
+        playsInline
+        className="
+absolute
+inset-0
+w-full
+h-full
+object-cover
+opacity-40
+"
+      >
+        <source src="/loader.mp4" type="video/mp4" />
+      </video>
+
+      {/* DARK OVERLAY */}
+
+      <div
+        className="
+absolute
+inset-0
+bg-black/60
+"
+      />
+
+      {/* FILM GRAIN */}
+
+      <div
+        className="
+absolute
+inset-0
+opacity-[0.08]
+bg-[url('/noise.png')]
+"
+      />
+
+      {/* TEXT */}
+
+      <div
+        className="
+relative
+text-center
+text-white
+"
+      >
+        <motion.p
+          initial={{
+            opacity: 0,
+            y: 20,
           }}
-          className="fixed inset-0 z-50 flex items-center justify-center bg-black"
+          animate={{
+            opacity: 1,
+            y: 0,
+          }}
+          transition={{
+            duration: 1,
+          }}
+          className="
+text-xs
+tracking-[0.7em]
+mb-12
+"
         >
-          <div className="text-center">
-            <motion.p
-              initial={{ opacity: 0, y: 18 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{
-                duration: 1,
-                ease: "easeOut",
-              }}
-              className={`${montserrat.className} text-[11px] uppercase tracking-[0.8em] text-neutral-300`}
-            >
-              Preserved Pieces
-            </motion.p>
+          ARCHIVE Nº001
+        </motion.p>
 
-            <motion.div
-              initial={{ width: 0, opacity: 0 }}
-              animate={{ width: 90, opacity: 1 }}
-              transition={{
-                delay: 0.7,
-                duration: 0.8,
-              }}
-              className="h-px bg-neutral-700 mx-auto my-8"
-            />
+        <motion.h1
+          initial={{
+            opacity: 0,
+            scale: 1.15,
+            filter: "blur(20px)",
+          }}
+          animate={{
+            opacity: 1,
+            scale: 1,
+            filter: "blur(0px)",
+          }}
+          transition={{
+            duration: 1.8,
+          }}
+          className="
+text-7xl
+md:text-[10rem]
+font-light
+tracking-[0.35em]
+"
+        >
+          DEADSTOCK
+        </motion.h1>
 
-            <motion.p
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{
-                delay: 1,
-                duration: 0.8,
-              }}
-              className={`${montserrat.className} text-[10px] uppercase tracking-[0.55em] text-neutral-500`}
-            >
-              for those who know
-            </motion.p>
-          </div>
-        </motion.div>
-      )}
-    </AnimatePresence>
+        <motion.p
+          initial={{
+            opacity: 0,
+          }}
+          animate={{
+            opacity: 1,
+          }}
+          transition={{
+            delay: 1.5,
+            duration: 1,
+          }}
+          className="
+mt-10
+text-sm
+tracking-[0.8em]
+"
+        >
+          CURATED HATS
+        </motion.p>
+      </div>
+
+      {/* SKIP / TRANSITION */}
+
+      <motion.div
+        initial={{
+          opacity: 0,
+        }}
+        animate={{
+          opacity: 1,
+        }}
+        transition={{
+          delay: 3,
+        }}
+        className="
+absolute
+bottom-12
+text-xs
+tracking-[0.5em]
+text-white/60
+"
+      >
+        FOR THOSE WHO KNOW
+      </motion.div>
+    </motion.div>
   );
 }

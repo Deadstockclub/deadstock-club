@@ -142,7 +142,41 @@ export default async function HatPage({
                   <p>• Secret Gift</p>
                 </div>
               </div>
+              {/* INFORMACIÓN */}
 
+              <div className="mt-12 border-t border-neutral-900 pt-8">
+                <div className="flex items-center justify-between py-3">
+                  <span
+                    className={`${display.className} uppercase tracking-[0.35em] text-[11px] text-neutral-500`}
+                  >
+                    Entrega estimada
+                  </span>
+
+                  <span className="text-sm text-neutral-300">
+                    7–12 días hábiles
+                  </span>
+                </div>
+
+                <div className="flex items-center justify-between py-3 border-t border-neutral-900">
+                  <span
+                    className={`${display.className} uppercase tracking-[0.35em] text-[11px] text-neutral-500`}
+                  >
+                    Disponibilidad
+                  </span>
+
+                  <span className="text-sm text-neutral-300">Muy limitada</span>
+                </div>
+
+                <div className="flex items-center justify-between py-3 border-t border-neutral-900">
+                  <span
+                    className={`${display.className} uppercase tracking-[0.35em] text-[11px] text-neutral-500`}
+                  >
+                    Envío
+                  </span>
+
+                  <span className="text-sm text-neutral-300">Todo Perú 🇵🇪</span>
+                </div>
+              </div>
               {/* ACCIONES */}
 
               <HatActions hat={hat} />

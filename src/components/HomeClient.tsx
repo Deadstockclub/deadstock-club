@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 import Loader from "./Loader";
 import Hero from "./Hero";
 import Drop from "./Drop";
-
+import Footer from "./Footer";
 export default function HomeClient() {
   const [loading, setLoading] = useState(true);
 
@@ -31,6 +31,7 @@ export default function HomeClient() {
         <>
           <Hero />
           <Drop />
+          <Footer />
         </>
       )}
     </>
