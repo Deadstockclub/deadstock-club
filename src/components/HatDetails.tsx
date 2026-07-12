@@ -1,6 +1,5 @@
 "use client";
 
-import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -8,7 +7,6 @@ import { Playfair_Display, Montserrat, DM_Sans } from "next/font/google";
 
 import FadeIn from "./animations/FadeIn";
 import Float from "./animations/Float";
-import ArchiveModal from "./ArchiveModal";
 
 const playfair = Playfair_Display({
   subsets: ["latin"],
@@ -34,8 +32,6 @@ interface Hat {
 }
 
 export default function HatDetail({ hat }: { hat: Hat }) {
-  const [open, setOpen] = useState(false);
-
   return (
     <>
       <main className="min-h-screen bg-black text-white">
@@ -142,8 +138,6 @@ export default function HatDetail({ hat }: { hat: Hat }) {
           </div>
         </div>
       </main>
-
-      <ArchiveModal open={open} onClose={() => setOpen(false)} hat={hat} />
     </>
   );
 }
