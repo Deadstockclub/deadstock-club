@@ -3,7 +3,7 @@
 import { useState } from "react";
 
 import Loader from "./Loader";
-import CuratedCollection from "./CuratedCollection";
+import MuseumEntrance from "./museum/MuseumEntrance";
 
 export default function HomeClient() {
   const [loading, setLoading] = useState(true);
@@ -11,13 +11,9 @@ export default function HomeClient() {
   return (
     <>
       {loading ? (
-        <Loader
-          onFinish={() => {
-            setLoading(false);
-          }}
-        />
+        <Loader onFinish={() => setLoading(false)} />
       ) : (
-        <CuratedCollection />
+        <MuseumEntrance />
       )}
     </>
   );

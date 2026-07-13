@@ -19,7 +19,7 @@ export default function Loader({ onFinish }: Props) {
 
     setTimeout(() => {
       onFinish();
-    }, 700);
+    }, 1200);
   }
 
   return (
